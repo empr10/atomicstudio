@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atomic Apps - Meet Our Team</title>
+    <title>Atomic Apps - Indie Soul, Mobile Scale</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #ffffff; overflow-x: hidden; line-height: 1.6; }
@@ -22,33 +22,145 @@
         .stat-card:hover { transform:translateY(-5px); background:rgba(255,255,255,0.08); border-color:rgba(139,92,246,0.5); box-shadow:0 10px 40px rgba(139,92,246,0.2); }
         .stat-number { font-size:3rem; font-weight:700; background:linear-gradient(135deg,#8b5cf6 0%,#3b82f6 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
         .stat-label { color:#9ca3af; margin-top:10px; font-size:1.1rem; }
-        .team-section { margin-bottom:80px; }
-        .section-title { font-size:2.5rem; font-weight:700; text-align:center; margin-bottom:60px; color:#ffffff; }
-        .team-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(350px,1fr)); gap:40px; }
-        .team-member { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:30px; transition:all 0.3s ease; animation:fadeInUp 0.8s ease-out both; position:relative; overflow:hidden; }
-        .team-member::before { content:''; position:absolute; top:-2px; left:-2px; right:-2px; bottom:-2px; background:linear-gradient(135deg,#8b5cf6,#3b82f6); border-radius:20px; opacity:0; transition:opacity 0.3s ease; z-index:-1; }
-        .team-member:hover::before { opacity:0.3; }
-        .team-member:hover { transform:translateY(-10px); background:rgba(255,255,255,0.05); box-shadow:0 20px 60px rgba(139,92,246,0.3); }
-        @keyframes fadeInUp { from {opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);} }
-        .member-header { display:flex; align-items:center; margin-bottom:20px; }
-        .member-photo { width:80px; height:80px; border-radius:50%; margin-right:20px; border:3px solid rgba(139,92,246,0.5); object-fit:cover; transition:all 0.3s ease; }
-        .team-member:hover .member-photo { border-color:#8b5cf6; transform:scale(1.05); }
-        .member-info h3 { font-size:1.4rem; font-weight:600; color:#ffffff; margin-bottom:5px; }
-        .member-role { color:#8b5cf6; font-weight:500; font-size:1rem; }
-        .member-experience { display:inline-block; background:rgba(139,92,246,0.2); color:#8b5cf6; padding:4px 12px; border-radius:20px; font-size:0.85rem; margin-top:5px; }
-        .member-description { color:#d1d5db; margin-bottom:20px; font-size:0.95rem; line-height:1.6; }
-        .member-skills { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:15px; }
-        .skill-tag { background:rgba(59,130,246,0.1); color:#60a5fa; padding:4px 12px; border-radius:6px; font-size:0.8rem; border:1px solid rgba(59,130,246,0.3); }
-        .member-links { display:flex; gap:15px; margin-top:20px; flex-wrap:wrap; }
-        .linkedin-link, .portfolio-link { color:#60a5fa; text-decoration:none; font-size:0.9rem; display:flex; align-items:center; gap:5px; transition:color 0.3s ease; }
-        .linkedin-link:hover, .portfolio-link:hover { color:#8b5cf6; }
-        .leadership { margin-bottom:60px; }
-        .leadership .team-member { background:rgba(139,92,246,0.05); border-color:rgba(139,92,246,0.2); }
-        .footer { text-align:center; padding:40px 0; color:#6b7280; font-size:0.9rem; }
-        @media (max-width:768px){ .header h1{font-size:3rem;} .team-grid{grid-template-columns:1fr; gap:30px;} .stats{grid-template-columns:repeat(2,1fr);} }
-        .glow { position:absolute; width:200px; height:200px; background:radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%); border-radius:50%; filter:blur(60px); animation:glow 8s ease-in-out infinite; pointer-events:none; }
-        @keyframes glow { 0%,100%{transform:translate(-50%,-50%) scale(1); opacity:0.5;} 50%{transform:translate(-50%,-50%) scale(1.5); opacity:0.8;} }
-        .portfolio-games { margin-top:10px; font-size:0.8rem; color:#9ca3af; }
+        .section { margin-bottom:80px; animation:fadeIn 1s ease-out 0.4s both; }
+        .section-title { font-size:2.5rem; font-weight:700; text-align:center; margin-bottom:40px; color:#ffffff; position: relative; display: inline-block; left: 50%; transform: translateX(-50%); }
+        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, transparent, #8b5cf6, transparent); }
+        .hero-section { display: flex; justify-content: space-between; align-items: center; margin-bottom: 100px; flex-wrap: wrap; }
+        .hero-content { flex: 1; min-width: 300px; animation: slideRight 1s ease-out; }
+        @keyframes slideRight { from {opacity:0; transform:translateX(-30px);} to {opacity:1; transform:translateX(0);} }
+        .hero-image { flex: 1; min-width: 300px; text-align: center; animation: slideLeft 1s ease-out; }
+        @keyframes slideLeft { from {opacity:0; transform:translateX(30px);} to {opacity:1; transform:translateX(0);} }
+        .hero-image svg { max-width: 300px; height: auto; transition: all 0.5s ease; }
+        .hero-image svg:hover { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.7)); }
+        .cta-button { display: inline-block; background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%); color: white; font-weight: 600; padding: 15px 40px; border-radius: 30px; text-decoration: none; margin-top: 30px; transition: all 0.3s ease; border: none; cursor: pointer; font-size: 1.1rem; }
+        .cta-button:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(139,92,246,0.4); background: linear-gradient(135deg, #9d6bff 0%, #4c93ff 100%); }
+        .expertise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .expertise-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; transition: all 0.3s ease; height: 100%; position: relative; overflow: hidden; }
+        .expertise-card::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(135deg, #8b5cf6, #3b82f6); border-radius: 20px; opacity: 0; transition: opacity 0.3s ease; z-index: -1; }
+        .expertise-card:hover::before { opacity: 0.3; }
+        .expertise-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.05); box-shadow: 0 20px 60px rgba(139,92,246,0.3); }
+        .expertise-icon { font-size: 2.5rem; margin-bottom: 20px; background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .expertise-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 15px; color: #ffffff; }
+        .expertise-description { color: #d1d5db; font-size: 0.95rem; line-height: 1.6; }
+        .games-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 80px; }
+        .game-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; overflow: hidden; transition: all 0.3s ease; position: relative; }
+        .game-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(139,92,246,0.3); }
+        .game-card img { width: 100%; height: 200px; object-fit: cover; transition: all 0.5s ease; }
+        .game-card:hover img { transform: scale(1.05); }
+        .game-info { padding: 20px; }
+        .game-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 10px; color: #ffffff; }
+        .game-description { color: #d1d5db; font-size: 0.9rem; margin-bottom: 15px; }
+        .game-link { display: inline-block; color: #8b5cf6; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: all 0.3s ease; }
+        .game-link:hover { color: #3b82f6; }
+        .tech-section { background: rgba(255,255,255,0.02); border-radius: 20px; padding: 60px 40px; margin-bottom: 80px; }
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+        .tech-category { text-align: left; margin-bottom: 30px; }
+        .tech-category-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: #8b5cf6; text-align: center; }
+        .tech-list { list-style: none; }
+        .tech-item { color: #d1d5db; margin-bottom: 10px; font-size: 0.95rem; position: relative; padding-left: 20px; }
+        .tech-item::before { content: '▹'; position: absolute; left: 0; color: #8b5cf6; }
+        .section-divider { height: 3px; background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent); margin: 80px auto; width: 80%; }
+        .metrics-section { text-align: center; margin-bottom: 80px; }
+        .metrics-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+        .metric-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px 30px; min-width: 200px; }
+        .metric-value { font-size: 2rem; font-weight: 700; margin-bottom: 5px; background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .metric-label { color: #9ca3af; font-size: 0.9rem; }
+        .footer { text-align: center; padding: 40px 0; color: #6b7280; font-size: 0.9rem; }
+        @media (max-width:768px){
+            .header h1{font-size:3rem;}
+            .hero-section{flex-direction:column;}
+            .hero-content{margin-bottom:40px;}
+            .stats{grid-template-columns:repeat(2,1fr);}
+            .expertise-grid{grid-template-columns:1fr;}
+            .games-showcase{grid-template-columns:1fr;}
+            .tech-grid{grid-template-columns:repeat(2,1fr);}
+            .metrics-grid{flex-direction:column; align-items:center;}
+            .team-preview-grid{grid-template-columns:1fr;}
+        }
+        .title-container {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .centered-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: inline-block;
+            position: relative;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        .centered-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+        }
+        .team-link-section {
+            text-align: center;
+            margin: 60px 0;
+        }
+        .team-showcase {
+            margin-bottom: 40px;
+        }
+        .team-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .team-preview-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .team-preview-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        .team-preview-card:hover::before {
+            opacity: 0.3;
+        }
+        .team-preview-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.05);
+            box-shadow: 0 20px 60px rgba(139,92,246,0.3);
+        }
+        .team-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .team-role {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        .team-description {
+            color: #d1d5db;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -56,276 +168,306 @@
     <div class="particles" id="particles"></div>
 
     <div class="container">
-        <div class="glow" style="top: 20%; left: 80%;"></div>
-        <div class="glow" style="top: 60%; left: 20%;"></div>
-
         <header class="header">
             <h1>Atomic Apps</h1>
-            <p class="subtitle">Indie Game Studio with Passion & Experience</p>
+            <p class="subtitle">Indie Soul, Mobile Scale.</p>
         </header>
 
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2 style="font-size: 2.5rem; margin-bottom: 30px; background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    Game Development Studio Founded in 2024
+                </h2>
+                <p style="font-size: 1.2rem; color: #d1d5db; margin-bottom: 20px; line-height: 1.8;">
+                    We build mobile games that feel indie-fresh yet scale like services. As hyper-casual loses traction and players crave deeper experiences, our gamer-led studio combines the creativity of the indie scene with the data-driven rigour of mobile F2P.
+                </p>
+                <p style="font-size: 1.2rem; color: #d1d5db; margin-bottom: 20px; line-height: 1.8;">
+                    Our genre focus includes roguelikes, tower defenses, puzzle hybrids, and top-down shooters—each title designed to stand out through novel mechanics or exceptionally polished gameplay.
+                </p>
+            </div>
+            <div class="hero-image">
+                <!-- SVG Atom icon -->
+                <svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="150" cy="150" rx="70" ry="120" stroke="url(#paint0_linear)" stroke-width="4" transform="rotate(0 150 150)"/>
+                    <ellipse cx="150" cy="150" rx="70" ry="120" stroke="url(#paint0_linear)" stroke-width="4" transform="rotate(60 150 150)"/>
+                    <ellipse cx="150" cy="150" rx="70" ry="120" stroke="url(#paint0_linear)" stroke-width="4" transform="rotate(120 150 150)"/>
+                    <circle cx="150" cy="150" r="20" fill="url(#paint0_linear)"/>
+                    
+                    <!-- Electron 1 -->
+                    <circle cx="150" cy="30" r="10" fill="url(#paint0_linear)">
+                        <animateTransform 
+                            attributeName="transform"
+                            type="rotate"
+                            from="0 150 150"
+                            to="360 150 150"
+                            dur="8s"
+                            repeatCount="indefinite"
+                        />
+                    </circle>
+                    
+                    <!-- Electron 2 -->
+                    <circle cx="220" cy="150" r="10" fill="url(#paint0_linear)">
+                        <animateTransform 
+                            attributeName="transform"
+                            type="rotate"
+                            from="0 150 150"
+                            to="360 150 150"
+                            dur="5s"
+                            repeatCount="indefinite"
+                        />
+                    </circle>
+                    
+                    <!-- Electron 3 -->
+                    <circle cx="80" cy="150" r="10" fill="url(#paint0_linear)">
+                        <animateTransform 
+                            attributeName="transform"
+                            type="rotate"
+                            from="0 150 150"
+                            to="360 150 150"
+                            dur="10s"
+                            repeatCount="indefinite"
+                        />
+                    </circle>
+                    
+                    <defs>
+                        <linearGradient id="paint0_linear" x1="0" y1="0" x2="300" y2="300" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#8b5cf6"/>
+                            <stop offset="100%" stop-color="#3b82f6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </section>
+
         <div class="stats">
-            <div class="stat-card"><div class="stat-number">12</div><div class="stat-label">Team Members</div></div>
-            <div class="stat-card"><div class="stat-number">50+</div><div class="stat-label">Games Shipped</div></div>
-            <div class="stat-card"><div class="stat-number">Full</div><div class="stat-label">Production Pipeline</div></div>
+            <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Team Members</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3M+</div>
+                <div class="stat-label">Total Downloads</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2024</div>
+                <div class="stat-label">Founded Year</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">F2P</div>
+                <div class="stat-label">Specialization</div>
+            </div>
         </div>
 
-        <section class="team-section leadership">
-            <h2 class="section-title">Leadership</h2>
-            <div class="team-grid">
-                <!-- Yurii Levytskyi -->
-                <div class="team-member">
-                    <div class="member-header">
-                        <img src="Yurii Levitskiy.jpg" alt="Yurii Levytskyi" class="member-photo">
-                        <div class="member-info">
-                            <h3>Yurii Levytskyi</h3>
-                            <div class="member-role">Senior Game Designer</div>
-                            <div class="member-experience">5 years experience</div>
-                        </div>
-                    </div>
-                    <p class="member-description">Passionate and results-driven Senior Game Designer with 5 years of experience developing and launching successful F2P mobile games. Specialized in game mechanics, UX, monetization, and LiveOps strategies to create engaging player experiences and drive sustainable revenue growth.</p>
-                    <div class="member-skills">
-                        <span class="skill-tag">Game Design</span><span class="skill-tag">Analysis</span><span class="skill-tag">UX</span><span class="skill-tag">Balance</span><span class="skill-tag">F2P Monetization</span><span class="skill-tag">LiveOps</span>
-                    </div>
-                    <div class="member-links">
-                        <a href="https://www.linkedin.com/in/yurii-levytskyi-7436b4239/" target="_blank" class="linkedin-link">LinkedIn</a>
-                        <a href="https://play.google.com/store/apps/dev?id=5073081520973833416" target="_blank" class="portfolio-link">Portfolio</a>
-                    </div>
-                    <div class="portfolio-games">12+ shipped games including Frontier Defenders, Sword Hero, Battle Craft</div>
+        <section class="section">
+            <div class="title-container">
+                <h2 class="centered-title">Our Expertise</h2>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">🎮</div>
+                    <h3 class="expertise-title">Product & Live-Ops Leadership</h3>
+                    <p class="expertise-description">Veteran producers who have shipped cross-platform hits and can scale teams and revenue with proven go-to-market playbooks.</p>
                 </div>
-
-                <!-- Mykhailo Alekseiev -->
-                <div class="team-member">
-                    <div class="member-header">
-                        <img src="Mykhailo Alekseiev.jpg" alt="Mykhailo Alekseiev" class="member-photo">
-                        <div class="member-info">
-                            <h3>Mykhailo Alekseiev</h3>
-                            <div class="member-role">Head of Engineering</div>
-                            <div class="member-experience">5 years experience</div>
-                        </div>
-                    </div>
-                    <p class="member-description">Managed and mentored development team, designed architecture, implemented gameplay systems, refactored and reviewed code. Expert in third-party SDK integration and technical direction.</p>
-                    <div class="member-skills">
-                        <span class="skill-tag">Team Leadership</span><span class="skill-tag">Architecture Design</span><span class="skill-tag">Gameplay Systems</span><span class="skill-tag">Code Review</span><span class="skill-tag">SDK Integration</span><span class="skill-tag">Technical Direction</span>
-                    </div>
-                    <div class="member-links">
-                        <a href="https://www.linkedin.com/in/mykhailo-alekseiev-37a787236/" target="_blank" class="linkedin-link">LinkedIn</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.playcus.groovemasters" target="_blank" class="portfolio-link">Portfolio</a>
-                    </div>
-                    <div class="portfolio-games">15+ shipped games including Groove Masters, Perfect Home, Idle DNA</div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">⚙️</div>
+                    <h3 class="expertise-title">Systems-First Game Design</h3>
+                    <p class="expertise-description">Economy-driven, retention-focused design that balances depth and accessibility to keep players in flow.</p>
                 </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">🎨</div>
+                    <h3 class="expertise-title">Unified Art & Engineering Pipeline</h3>
+                    <p class="expertise-description">2D/3D art, animation, VFX and Unity engineering working on a single agile toolchain for rapid content drops.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">📊</div>
+                    <h3 class="expertise-title">Agile, Data-Centric Process</h3>
+                    <p class="expertise-description">CI/CD, KPI tracking and deep player analytics baked into every sprint, ensuring high-velocity iteration and sustainable growth.</p>
+                </div>
+            </div>
+        </section>
 
-                <!-- Nick Bielskykh -->
-                <div class="team-member">
-                    <div class="member-header">
-                        <img src="Nick Bielskykh.jpg" alt="Nick Bielskykh" class="member-photo">
-                        <div class="member-info">
-                            <h3>Nick Bielskykh</h3>
-                            <div class="member-role">Product Manager</div>
-                            <div class="member-experience">12 years experience</div>
-                        </div>
+        <div class="section-divider"></div>
+
+        <section class="section">
+            <div class="title-container">
+                <h2 class="centered-title">Our Games</h2>
+            </div>
+            <div class="games-showcase">
+                 <div class="game-card">
+                    <img src="game1.webp" alt="Hidden Objects: Seek and Find" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3 class="game-title">Hidden Objects: Seek and Find</h3>
+                        <p class="game-description">A visually stunning hidden object game with progressive challenges and narrative elements.</p>
+                        <a href="https://play.google.com/store/apps/details?id=com.crooto.hidden.objects.findthem.scavenger" target="_blank" class="game-link">Play Now →</a>
                     </div>
-                    <p class="member-description">Product & CX leader with 12+ years in tech and the last 3 years managing game development teams. Shipped cross-platform products including Spark Mail and Velonto (acquired for $1M). Track record includes scaling and directing 170-person organisations, implementing data-driven processes, and designing game economies and monetisation.</p>
-                    <div class="member-skills">
-                        <span class="skill-tag">Management</span><span class="skill-tag">Vision</span><span class="skill-tag">Strategy</span><span class="skill-tag">Game Design</span><span class="skill-tag">Go-to-Market</span><span class="skill-tag">LiveOps</span>
+              
+                </div>
+                <div class="game-card">
+                    <img src="game3.webp" alt="DOP 2: Puzzle & Riddle" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3 class="game-title">DOP 2: Puzzle & Riddle</h3>
+                        <p class="game-description">A brain-teasing puzzle game that challenges players to solve riddles by removing the right elements.</p>
+                        <a href="https://play.google.com/store/apps/details?id=com.weave.dop.delete.one.part.riddles.puzzle" target="_blank" class="game-link">Play Now →</a>
                     </div>
-                    <div class="member-links">
-                        <a href="https://www.linkedin.com/in/nick-belskykh-a94758120/" target="_blank" class="linkedin-link">LinkedIn</a>
-                        <a href="https://play.google.com/store/apps/dev?id=5073081520973833416" target="_blank" class="portfolio-link">Portfolio</a>
+                </div>
+                 <div class="game-card">
+                    <img src="game2.webp" alt="Frontier Heroes: Deck of Fate" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3 class="game-title">Frontier Heroes: Deck of Fate</h3>
+                        <p class="game-description">A strategic tower defense game with roguelike elements and a unique resource management system.</p>
+                        <a href="https://play.google.com/store/apps/details?id=com.atomicplayapps.frontierdefenders" target="_blank" class="game-link">Play Now →</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="game4.webp" alt="Lemon Play: Stickman Eraser" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3 class="game-title">Lemon Play: Stickman Eraser</h3>
+                        <p class="game-description">A creative puzzle game where players erase stickman figures to solve challenging levels.</p>
+                        <a href="https://play.google.com/store/apps/details?id=top.setapp.lemon" target="_blank" class="game-link">Play Now →</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Core Team -->
-        <section class="team-section">
-            <h2 class="section-title">Core Team</h2>
-            <div class="team-grid">
-                <!-- Anna Tynchuk -->
-                <div class="team-member">
-                    <div class="member-header">
-                        <img src="Anna Tynchuk.jpg" alt="Anna Tynchuk" class="member-photo">
-                        <div class="member-info">
-                            <h3>Anna Tynchuk</h3>
-                            <div class="member-role">Project Manager</div>
-                            <div class="member-experience">3 years experience</div>
-                        </div>
-                    </div>
-                    <p class="member-description">Built and optimized workflows, forecasted project deadlines and budgets, established team collaboration. Expert in managing hybrid casual and puzzle games.</p>
-                    <div class="member-skills">
-                        <span class="skill-tag">Team Management</span><span class="skill-tag">Workflow Creation</span><span class="skill-tag">Budget Planning</span><span class="skill-tag">Roadmap Management</span><span class="skill-tag">Performance Monitoring</span>
-                    </div>
-                    <div class="member-links">
-                        <a href="https://www.linkedin.com/in/anna-tynchuk-b84a17b5/" target="_blank" class="linkedin-link">LinkedIn</a>
-                    </div>
-                </div>
+        <div class="section-divider"></div>
 
-                <!-- Borys Chernyshev -->
-                <div class="team-member">
-                    <div class="member-header">
-                        <img src="Borys Chernishov.jpg" alt="Borys Chernyshev" class="member-photo">
-                        <div class="member-info">
-                            <h3>Borys Chernyshev</h3>
-                            <div class="member-role">Game Developer</div>
-                            <div class="member-experience">4 years experience</div>
-                        </div>
-                    </div>
-                    <p class="member-description">Contributed to the design, development, and maintenance of core systems and features across multiple projects. Expert in gameplay programming and system architecture.</p>
-                    <div class="member-skills">
-                        <span class="skill-tag">Gameplay Programming</span><span class="skill-tag">System Architecture</span><span class="skill-tag">Cross-Project Code Re-use</span><span class="skill-tag">SDK Integration</span><span class="skill-tag">Performance Profiling</span>
-                    </div>
-                    <div class="member-links">
-                        <a href="https://www.linkedin.com/in/threongamedev/" target="_blank" class="linkedin-link">LinkedIn</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.unavinar.idledna" target="_blank" class="portfolio-link">Portfolio</a>
-                    </div>
-                    <div class="portfolio-games">8+ shipped games including Idle DNA, Break Color, We Warriors</div>
+        <section class="metrics-section">
+            <div class="title-container">
+                <h2 class="centered-title">Performance Metrics</h2>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-value">32%</div>
+                    <div class="metric-label">Day 1 Retention</div>
                 </div>
-
-                <!-- Oleksii Burlaka -->
-                <div class="team-member">
-                    <div class="member-header">
-                        <img src="Oleksii Burlaka.jpg" alt="Oleksii Burlaka" class="member-photo">
-                        <div class="member-info">
-                            <h3>Oleksii Burlaka</h3>
-                            <div class="member-role">Game Developer</div>
-                            <div class="member-experience">4 years experience</div>
-                        </div>
-                    </div>
-                    <p class="member-description">Creating game architecture, writing game logic, integrating third-party SDKs, adapting UI. Expert in game design patterns and agile collaboration.</p>
-                    <div class="member-skills">
-                        <span class="skill-tag">Game Architecture</span><span class="skill-tag">Gameplay Logic</span><span class="skill-tag">Adaptive UI</span><span class="skill-tag">SDK Integration</span><span class="skill-tag">Code Refactoring</span><span class="skill-tag">Agile</span>
-                    </div>
-                    <div class="member-links">
-                        <a href="https://www.linkedin.com/in/oleksiiburlakaukr/" target="_blank" class="linkedin-link">LinkedIn</a>
-                        <a href="https://play.google.com/store/apps/dev?id=5073081520973833416" target="_blank" class="portfolio-link">Portfolio</a>
-                    </div>
+                <div class="metric-item">
+                    <div class="metric-value">10%</div>
+                    <div class="metric-label">Day 3 Retention</div>
                 </div>
-
-                <!-- Anton Dobonii -->
-                <div class="team-member">
-                    <div class="member-header">
-                        <img src="Anton Dobonii.jpg" alt="Anton Dobonii" class="member-photo">
-                        <div class="member-info">
-                            <h3>Anton Dobonii</h3>
-                            <div class="member-role">Game Developer</div>
-                            <div class="member-experience">3 years experience</div>
-                        </div>
-                    </div>
-                    <p class="member-description">Create level editors, develop, integrating third-party SDKs, layout UI, and maintenance of core systems and features across multiple projects.</p>
-                    <div class="member-skills">
-                        <span class="skill-tag">Tool Development</span><span class="skill-tag">Level Editor</span><span class="skill-tag">UI Layout</span><span class="skill-tag">Core Systems</span><span class="skill-tag">Optimization</span><span class="skill-tag">Bug Fixing</span>
-                    </div>
-                    <div class="member-links">
-                        <a href="https://www.linkedin.com/in/anton-dobonii-39a6b0186/" target="_blank" class="linkedin-link">LinkedIn</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.unavinar.hiddenobject" target="_blank" class="portfolio-link">Portfolio</a>
-                    </div>
-                    <div class="portfolio-games">11+ shipped games including Hidden Object, Farm Jam Puzzle, Draw TD</div>
-                </div>
-
-                <!-- Ihor Belov -->
-                <div class="team-member">
-                    <div class="member-header">
-                        <img src="Ihor Belov.jpg" alt="Igor Belov" class="member-photo">
-                        <div class="member-info">
-                            <h3>Igor Belov</h3>
-                            <div class="member-role">Senior UX/UI Designer</div>
-                            <div class="member-experience">7 years experience</div>
-                        </div>
-                    </div>
-                    <p class="member-description">Worked with Unity assets, researched and created logics, User Experience, adapted assets for our needs, created UI and generated ideas for better UX, implemented cross-functional collaboration.</p>
-                    <div class="member-skills">
-                        <span class="skill-tag">UX/UI Design</span><span class="skill-tag">Interaction Design</span><span class="skill-tag">Unity Assets</span><span class="skill-tag">UX Research</span><span class="skill-tag">Prototyping</span><span class="skill-tag">Team Management</span>
-                    </div>
-                    <div class="member-links">
-                        <a href="https://www.linkedin.com/in/ihor-bielov-17007b171/" target="_blank" class="linkedin-link">LinkedIn</a>
-                    </div>
-                </div>
-
-                <!-- Viktoria Kaushnyan -->
-                <div class="team-member">
-                    <div class="member-header">
-                        <img src="Viktoria Kaushnyan.jpg" alt="Viktoria Kaushnyan" class="member-photo">
-                        <div class="member-info">
-                            <h3>Viktoria Kaushnyan</h3>
-                            <div class="member-role">2D Artist / Visual Development</div>
-                            <div class="member-experience">5 years experience</div>
-                        </div>
-                    </div>
-                    <p class="member-description">Creating assets, preparing and animating in Unity, setting up VFX, creating backgrounds and UI, designing characters and props, making model sheets for 3D, developing environment and mood concepts.</p>
-                    <div class="member-skills">
-                        <span class="skill-tag">Concept Art</span><span class="skill-tag">Characters</span><span class="skill-tag">Backgrounds</span><span class="skill-tag">Props</span><span class="skill-tag">Unity Animation</span><span class="skill-tag">Style Control</span>
-                    </div>
-                    <div class="member-links">
-                        <a href="https://www.linkedin.com/in/viktoria-kaushnyan-5b3885190/" target="_blank" class="linkedin-link">LinkedIn</a>
-                    </div>
-                </div>
-
-                
-                <!-- Iryna Kokosha -->
-                <div class="team-member">
-                    <div class="member-header">
-                        <img src="Iryna Kokosha.jpg" alt="Iryna Kokosha" class="member-photo">
-                        <div class="member-info">
-                            <h3>Iryna Kokosha</h3>
-                            <div class="member-role">2D Artist / Visual Development</div>
-                            <div class="member-experience">4 years experience</div>
-                        </div>
-                    </div>
-                    <p class="member-description">Designing characters, preparing and animating in Unity, isometric and perspective props, promo illustrations, app icons, setting up basic VFX, creating backgrounds and UI.</p>
-                    <div class="member-skills">
-                        <span class="skill-tag">Character Design</span><span class="skill-tag">Concept Art</span><span class="skill-tag">Isometric Props</span><span class="skill-tag">Promo Illustration</span><span class="skill-tag">App Icons</span><span class="skill-tag">2D Animation</span>
-                    </div>
-                    <div class="member-links">
-                        <a href="https://www.linkedin.com/in/iryna-kokosha-83409b230/" target="_blank" class="linkedin-link">LinkedIn</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.unavinar.undeadlamb" target="_blank" class="portfolio-link">Portfolio</a>
-                    </div>
-                    <div class="portfolio-games">Undead Lamb, Battle Craft, Animate It</div>
-                </div>
-<!-- Denys Tatchuk -->
-                <div class="team-member">
-                    <div class="member-header">
-                        <img src="Denys Tatchuk.jpg" alt="Denys Tatchuk" class="member-photo">
-                        <div class="member-info">
-                            <h3>Denys Tatchuk</h3>
-                            <div class="member-role">3D Artist / Visual Development</div>
-                            <div class="member-experience">3 years experience</div>
-                        </div>
-                    </div>
-                    <p class="member-description">Have experience working with both game assets and environments, as well as cinematics. Hands-on experience with the entire visual production process, from modeling and texturing to scene setup, animation, and visual effects in Unity.</p>
-                    <div class="member-skills">
-                        <span class="skill-tag">3D Modeling</span><span class="skill-tag">Texturing</span><span class="skill-tag">Scene Composition</span><span class="skill-tag">Environment Art</span><span class="skill-tag">Unity VFX</span><span class="skill-tag">Lighting</span>
-                    </div>
-                    <div class="member-links">
-                        <a href="https://www.linkedin.com/in/denys-tatchuk/" target="_blank" class="linkedin-link">LinkedIn</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.unavinar.farmjampuzzle" target="_blank" class="portfolio-link">Portfolio</a>
-                    </div>
-                    <div class="portfolio-games">Farm Jam Puzzle, Highway Traffic</div>
-                </div>
-
-                <!-- Alex Hrazhdan (placeholder kept) -->
-                <div class="team-member">
-                    <div class="member-header">
-                        <img src="Alex Hrazhdan.jpg" alt="Alex Hrazhdan" class="member-photo">
-                        <div class="member-info">
-                            <h3>Alex Hrazhdan</h3>
-                            <div class="member-role">3D Artist / Visual Development</div>
-                            <div class="member-experience">5 years experience</div>
-                        </div>
-                    </div>
-                    <p class="member-description">I have experience creating both game assets and environments, as well as producing cinematic content. I've been directly involved in the full visual production pipeline — including modeling, texturing, scene composition, animation, and implementing visual effects in Unity.</p>
-                    <div class="member-skills">
-                        <span class="skill-tag">3D Modeling</span><span class="skill-tag">Texturing</span><span class="skill-tag">Scene Composition</span><span class="skill-tag">Game Assets</span><span class="skill-tag">Environment Art</span><span class="skill-tag">Cinematics</span>
-                    </div>
-                    <div class="member-links">
-                        <a href="https://www.linkedin.com/in/alex-hrazhdan-121457234/" target="_blank" class="linkedin-link">LinkedIn</a>
-                        <a href="https://store.steampowered.com/app/3086630/Mansion_Restorator/" target="_blank" class="portfolio-link">Portfolio</a>
-                    </div>
-                    <div class="portfolio-games">Mansion Restorator (Steam), Super Mega Game Dev projects</div>
+                <div class="metric-item">
+                    <div class="metric-value">3M+</div>
+                    <div class="metric-label">Total Downloads</div>
                 </div>
             </div>
         </section>
 
-        <div class="footer"><p>Ready to create amazing games together</p></div>
+        <section class="tech-section">
+            <div class="title-container">
+                <h2 class="centered-title">Our Tech Stack</h2>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Engine & Core</h3>
+                    <ul class="tech-list">
+                        <li class="tech-item">Unity 2D/3D</li>
+                        <li class="tech-item">Addressables</li>
+                        <li class="tech-item">DOTween</li>
+                        <li class="tech-item">Unreal (Cinematics)</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Analytics & LiveOps</h3>
+                    <ul class="tech-list">
+                        <li class="tech-item">Firebase</li>
+                        <li class="tech-item">Amplitude</li>
+                        <li class="tech-item">ByteBrew</li>
+                        <li class="tech-item">GameAnalytics</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Monetization & UA</h3>
+                    <ul class="tech-list">
+                        <li class="tech-item">Unity IAP</li>
+                        <li class="tech-item">AppLovin MAX</li>
+                        <li class="tech-item">AppsFlyer</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Networking & Backend</h3>
+                    <ul class="tech-list">
+                        <li class="tech-item">Photon Fusion</li>
+                        <li class="tech-item">Unity Netcode</li>
+                        <li class="tech-item">Custom REST services</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Production Toolkit</h3>
+                    <ul class="tech-list">
+                        <li class="tech-item">Jira</li>
+                        <li class="tech-item">Confluence</li>
+                        <li class="tech-item">Figma</li>
+                        <li class="tech-item">Miro</li>
+                    </ul>
+                </div>
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Art & Content</h3>
+                    <ul class="tech-list">
+                        <li class="tech-item">Photoshop</li>
+                        <li class="tech-item">Blender</li>
+                        <li class="tech-item">ZBrush</li>
+                        <li class="tech-item">Substance Painter</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <section class="section">
+            <div class="title-container">
+                <h2 class="centered-title">Games Ready for Publishers</h2>
+            </div>
+            <div style="text-align: center; margin-bottom: 40px;">
+                <p style="font-size: 1.2rem; color: #d1d5db; margin-bottom: 30px; line-height: 1.8; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    Explore our collection of completed games that are ready to be published. These projects showcase our expertise in game development and are looking for the right publishing partner.
+                </p>
+                <a href="https://drive.google.com/drive/folders/13MJ4koIZYY0abCMbBjWpJmicWKvWvGVN?usp=sharing" target="_blank" class="cta-button">View Project Folder</a>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <section class="section">
+            <div class="title-container">
+                <h2 class="centered-title">Meet Our Team</h2>
+            </div>
+            <div class="team-showcase">
+                <div class="team-intro">
+                    <p style="font-size: 1.2rem; color: #d1d5db; margin-bottom: 30px; line-height: 1.8; text-align: center; max-width: 700px; margin-left: auto; margin-right: auto;">
+                        Behind every great game is a passionate team of creators. Get to know the talented individuals who bring our visions to life.
+                    </p>
+                </div>
+                <div class="team-preview-grid">
+                    <div class="team-preview-card">
+                        <div class="team-icon">👨‍💻</div>
+                        <h3 class="team-role">Developers</h3>
+                        <p class="team-description">Full-stack engineers crafting seamless gameplay experiences</p>
+                    </div>
+                    <div class="team-preview-card">
+                        <div class="team-icon">🎨</div>
+                        <h3 class="team-role">Artists</h3>
+                        <p class="team-description">Visual storytellers creating stunning game worlds</p>
+                    </div>
+                    <div class="team-preview-card">
+                        <div class="team-icon">🎮</div>
+                        <h3 class="team-role">Game Designers</h3>
+                        <p class="team-description">Creative minds designing engaging player experiences</p>
+                    </div>
+                    <div class="team-preview-card">
+                        <div class="team-icon">📊</div>
+                        <h3 class="team-role">Producers</h3>
+                        <p class="team-description">Strategic leaders driving project success</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="team.html" class="cta-button">Meet Our Team Members</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="footer">
+            <p>© 2025 Atomic Apps. All rights reserved.</p>
+        </div>
     </div>
 
     <script>
@@ -338,9 +480,28 @@
             particle.style.animationDuration = (15 + Math.random() * 10) + 's';
             particlesContainer.appendChild(particle);
         }
-        const teamMembers = document.querySelectorAll('.team-member');
-        teamMembers.forEach((member, index) => {
-            member.style.animationDelay = `${index * 0.1}s`;
+
+        // Scroll animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section, .expertise-card, .game-card').forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(element);
         });
     </script>
 </body>
