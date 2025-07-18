@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Games Portfolio - Atomic Apps</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #ffffff; overflow-x: hidden; line-height: 1.6; }
+        .background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%); }
+        .particles { position: fixed; width: 100%; height: 100%; overflow: hidden; z-index: -1; }
+        .particle { position: absolute; width: 4px; height: 4px; background: rgba(139, 92, 246, 0.5); border-radius: 50%; animation: float 20s infinite; }
+        @keyframes float { 
+            0% { 
+                transform: translateY(0) translateX(0); 
+                opacity: 0;
+            } 
+            10% {
+                opacity: 0.7;
+            } 
+            90% {
+                opacity: 0.7;
+            } 
+            100% {
+                transform: translateY(-50vh) translateX(50px); 
+                opacity: 0;
+            } 
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 60px 20px; position: relative; z-index: 1; }
+        .header { text-align: center; margin-bottom: 80px; animation: slideDown 0.8s ease-out; }
+        @keyframes slideDown { from { opacity:0; transform:translateY(-30px);} to {opacity:1; transform:translateY(0);} }
+        .header h1 { font-size: 4rem; font-weight: 800; background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:20px; letter-spacing:-2px; }
+        .header .subtitle { font-size:1.5rem; color:#9ca3af; font-weight:300; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: #8b5cf6; text-decoration: none; font-size: 1.1rem; font-weight: 500; transition: all 0.3s ease; margin-bottom: 40px; }
+        .back-link:hover { color: #3b82f6; transform: translateX(-5px); }
+        .back-link::before { content: '← '; }
+        
+        .stats-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 80px; animation: fadeIn 1s ease-out 0.2s both; }
+        @keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+        .stat-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:30px; text-align:center; backdrop-filter:blur(10px); transition:all 0.3s ease; }
+        .stat-card:hover { transform:translateY(-5px); background:rgba(255,255,255,0.08); border-color:rgba(139,92,246,0.5); box-shadow:0 10px 40px rgba(139,92,246,0.2); }
+        .stat-number { font-size:2.5rem; font-weight:700; background:linear-gradient(135deg,#8b5cf6 0%,#3b82f6 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .stat-label { color:#9ca3af; margin-top:10px; font-size:1rem; }
+
+        .genre-section { margin-bottom: 80px; animation: fadeIn 1s ease-out 0.4s both; }
+        .genre-title { font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 20px; color: #ffffff; position: relative; display: inline-block; left: 50%; transform: translateX(-50%); }
+        .genre-title::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, transparent, #8b5cf6, transparent); }
+        .genre-description { text-align: center; color: #9ca3af; font-size: 1.2rem; margin-bottom: 50px; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-bottom: 80px; }
+        .game-card { 
+            background: rgba(255,255,255,0.03); 
+            border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 20px; 
+            overflow: hidden; 
+            transition: all 0.3s ease; 
+            position: relative; 
+            height: 100%; 
+            display: flex; 
+            flex-direction: column;
+            max-width: 450px; /* Ограничение максимальной ширины карточки */
+            margin: 0 auto; /* Центрирование карточки внутри ячейки */
+        }
+        .game-card::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(135deg, #8b5cf6, #3b82f6); border-radius: 20px; opacity: 0; transition: opacity 0.3s ease; z-index: -1; }
+        .game-card:hover::before { opacity: 0.3; }
+        .game-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.05); box-shadow: 0 20px 60px rgba(139,92,246,0.3); }
+        
+        .game-image { 
+            position: relative; 
+            overflow: hidden; 
+            height: 200px; 
+        }
+        .game-image img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: all 0.5s ease; 
+            object-position: center; /* Обеспечивает центрирование изображения */
+        }
+        .game-card:hover .game-image img { transform: scale(1.05); }
+        .genre-badge { position: absolute; top: 15px; right: 15px; background: rgba(139, 92, 246, 0.9); color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; backdrop-filter: blur(10px); }
+        
+        .game-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .game-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; color: #ffffff; }
+        .game-description { color: #d1d5db; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6; flex-grow: 1; }
+        .game-actions { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+        .play-store-link { display: inline-flex; align-items: center; background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%); color: white; text-decoration: none; padding: 10px 20px; border-radius: 25px; font-size: 0.9rem; font-weight: 600; transition: all 0.3s ease; }
+        .play-store-link:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(139,92,246,0.4); background: linear-gradient(135deg, #9d6bff 0%, #4c93ff 100%); }
+        .play-store-link::after { content: ' →'; }
+
+        .section-divider { height: 3px; background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent); margin: 80px auto; width: 80%; }
+        
+        .footer { text-align: center; padding: 40px 0; color: #6b7280; font-size: 0.9rem; }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 3rem; }
+            .games-grid { 
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+                gap: 30px; 
+            }
+            .stats-overview { grid-template-columns: repeat(2, 1fr); }
+            .game-actions { flex-direction: column; gap: 15px; align-items: stretch; }
+            .play-store-link { text-align: center; }
+        }
+        
+        @media (min-width: 1400px) {
+            .games-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="particles" id="particles"></div>
+
+            <div class="container">
+        <header class="header">
+            <h1>Our Team's Experience Portfolio</h1>
+            <p class="subtitle">Games Our Team Members Have Worked On at Previous Companies</p>
+        </header>
+
+        <section class="genre-section">
+            <h2 class="genre-title">Mid-Core / Roguelike / TD</h2>
+            <p class="genre-description">
+                Deep, engaging gameplay mechanics that combine strategic thinking with action-packed gameplay. Each title is designed for players who crave more than casual entertainment.
+            </p>
+            
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_frontier_defenders.webp" alt="Frontier Defenders">
+                        <div class="genre-badge">Tower Defense</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Frontier Defenders</h3>
+                        <p class="game-description">Defend your base in a strategic tower defense war! Build and upgrade defensive structures while managing resources in this challenging strategy game.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.atomicplayapps.frontierdefenders" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_sword_hero.webp" alt="Sword Hero">
+                        <div class="genre-badge">Hack & Slash</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Sword Hero</h3>
+                        <p class="game-description">Slash through enemies in an endless fantasy arena! Master combat mechanics and upgrade your hero in this action-packed adventure.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.atomicplayapps.swordhero" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_battle_craft.webp" alt="Battle Craft">
+                        <div class="genre-badge">Auto-battler</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Battle Craft</h3>
+                        <p class="game-description">Deploy heroes and auto-battle your way to victory! Strategic team composition meets automated combat in this engaging tactical experience.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.battlecraft" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_king_slime.webp" alt="King Slime">
+                        <div class="genre-badge">Idle Battle</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">King Slime</h3>
+                        <p class="game-description">Merge your slimes and dominate the battlefield! Combine strategy with idle mechanics for endless entertainment and progression.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.kingslime" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_undead_lamb.webp" alt="Undead Lamb">
+                        <div class="genre-badge">Roguelike</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Undead Lamb</h3>
+                        <p class="game-description">A roguelike rampage through the undead wastelands! Experience procedurally generated levels with challenging combat and unique power-ups.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.undeadlamb" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_idle_dna.webp" alt="Idle DNA">
+                        <div class="genre-badge">Idle Merge Sci-Fi</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Idle DNA</h3>
+                        <p class="game-description">Merge DNA strands and evolve unstoppable mutants! Combine idle gameplay with scientific evolution mechanics for a unique experience.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.idledna" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_idle_shooter.webp" alt="Idle Shooter">
+                        <div class="genre-badge">Idle + Shooter</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Idle Shooter</h3>
+                        <p class="game-description">Upgrade, shoot, repeat — idle shooter mayhem! Perfect blend of active shooting action and idle progression mechanics.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.idleshooter" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_tiny_battles.webp" alt="Tiny Battles">
+                        <div class="genre-badge">Auto Battle Roguelite</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Tiny Battles</h3>
+                        <p class="game-description">Assemble your team and win bite-sized battles! Quick strategic encounters with roguelite progression and team building elements.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.tinybattles" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_we_warriors.webp" alt="We Warriors">
+                        <div class="genre-badge">PvP Battle / Idle</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">We Warriors</h3>
+                        <p class="game-description">Train warriors and clash in idle PvP arenas! Competitive multiplayer meets idle progression in this engaging combat experience.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.wewarriors" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_battle_hole.webp" alt="Battle Hole">
+                        <div class="genre-badge">Action Brawler</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Battle Hole</h3>
+                        <p class="game-description">Dive into chaotic action brawls with wacky weapons! Fast-paced combat with physics-based gameplay and unpredictable battles.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.battlehole" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_merge_heroes_run.webp" alt="Merge Heroes Run">
+                        <div class="genre-badge">Runner + Merge</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Merge Heroes Run</h3>
+                        <p class="game-description">Run, merge, and conquer waves of enemies! Innovative combination of endless runner gameplay with strategic merging mechanics.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.mergeheroesrun" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_jacks_life.webp" alt="Jack's Life">
+                        <div class="genre-badge">Survival Platformer</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Jack's Life</h3>
+                        <p class="game-description">Survive the pixel apocalypse with traps and tricks! Navigate through challenging platformer levels while managing survival elements.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.jackslife" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="genre-section">
+            <h2 class="genre-title">Puzzle / Merge / Hidden Object</h2>
+            <p class="genre-description">
+                Brain-engaging puzzle games with clever mechanics, hidden object searches, and satisfying merge gameplay. Perfect for players who love to think, solve, and discover.
+            </p>
+            
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_farm_jam_puzzle.webp" alt="Farm Jam Puzzle">
+                        <div class="genre-badge">Match-3 / Merge</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Farm Jam Puzzle</h3>
+                        <p class="game-description">Match and merge adorable crops in a puzzle farm! Combine classic match-3 mechanics with farming themes for a delightful puzzle experience.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.farmjampuzzle" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_scavenger_hunt.webp" alt="Scavenger Hunt: Find Them All">
+                        <div class="genre-badge">Hidden Object</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Scavenger Hunt: Find Them All</h3>
+                        <p class="game-description">Explore and uncover hidden treasures! Search through beautifully crafted scenes to find cleverly hidden objects and solve mysteries.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.crooto.hidden.objects.findthem.scavenger" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_dop_delete_one_part.webp" alt="DOP Delete One Part">
+                        <div class="genre-badge">Brain Teaser</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">DOP Delete One Part</h3>
+                        <p class="game-description">Delete parts to solve quirky riddles! Use creative thinking to remove the right elements and reveal the solution to brain-bending puzzles.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.weave.dop.delete.one.part.riddles.puzzle" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_sticker_puzzle_book.webp" alt="Sticker Puzzle Book">
+                        <div class="genre-badge">Puzzle</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Sticker Puzzle Book</h3>
+                        <p class="game-description">Solve fun puzzles with clever stickers! Place stickers strategically to complete scenes and solve entertaining brain challenges.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.weave.sticker.puzzle.book.brain.riddle.game" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_dish_jam.webp" alt="Dish Jam">
+                        <div class="genre-badge">Food Puzzle</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Dish Jam</h3>
+                        <p class="game-description">Cook up tasty combos in a delicious puzzle! Match ingredients and create mouth-watering dishes in this food-themed puzzle adventure.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.dishjam" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_break_color.webp" alt="Break Color">
+                        <div class="genre-badge">Color Puzzle</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Break Color</h3>
+                        <p class="game-description">Break through color blocks with your brainpower! Strategic color-matching puzzle that challenges your logic and pattern recognition skills.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.breakcolor" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_circle_puzzle.webp" alt="Circle Puzzle">
+                        <div class="genre-badge">Logic Puzzle</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Circle Puzzle</h3>
+                        <p class="game-description">Spin and solve minimalist logic circles! Elegant puzzle design that focuses on pure logic and spatial reasoning challenges.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.circlepuzzle" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_goods_sorter_master.webp" alt="Goods Sorter Master">
+                        <div class="genre-badge">Sorting Puzzle</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Goods Sorter Master</h3>
+                        <p class="game-description">Sort items fast and become the master! Test your organizational skills with increasingly complex sorting challenges and time pressure.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.stfalcon.match.goods.sorter.master" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_unbolt_me.webp" alt="Unbolt Me">
+                        <div class="genre-badge">Unblock Puzzle</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Unbolt Me</h3>
+                        <p class="game-description">Slide and unbolt your way out of brain traps! Classic sliding puzzle mechanics with modern twists and challenging level design.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.maxitonline.unboltme" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_draw_td.webp" alt="Draw TD">
+                        <div class="genre-badge">Draw Puzzle + TD</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Draw TD</h3>
+                        <p class="game-description">Draw defenses, stop invaders in creative TD! Innovative tower defense where you draw your own defensive strategies and structures.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.drawtd" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section class="genre-section">
+            <h2 class="genre-title">Casual / Simulation / Quirky</h2>
+            <p class="genre-description">
+                Light-hearted and entertaining games designed for quick play sessions and broad appeal. These quirky titles offer unique concepts, satisfying mechanics, and plenty of laughs with minimal learning curve.
+            </p>
+            
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_parking_hero.webp" alt="Parking Hero">
+                        <div class="genre-badge">Parking Sim</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Parking Hero</h3>
+                        <p class="game-description">Park with precision — become the hero of tight spots! Master challenging parking scenarios in increasingly difficult environments.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.atomicplayapps.parkinghero" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_pop_them_all.webp" alt="Pop Them All!">
+                        <div class="genre-badge">Tap / Idle</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Pop Them All!</h3>
+                        <p class="game-description">Pop 'em all in this oddly satisfying idle tapper! Experience the simple joy of popping objects with addictive progression mechanics.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.weaveGames.popthemall" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_lemon_asmr.webp" alt="Lemon ASMR Slicer">
+                        <div class="genre-badge">ASMR / Juice Tapper</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Lemon ASMR Slicer</h3>
+                        <p class="game-description">Juice fruits in this oddly soothing ASMR game! Slice, squeeze, and enjoy the satisfying sounds and visuals of fruit juicing.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=top.setapp.lemon" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_fix_my_phone.webp" alt="Fix My Phone!">
+                        <div class="genre-badge">Mini Job Sim</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Fix My Phone!</h3>
+                        <p class="game-description">Fix phones and customers in chaotic tech repairs! Manage your repair shop, handle difficult customers, and solve technical problems.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.fixphone" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_toilet_rush.webp" alt="Toilet Rush">
+                        <div class="genre-badge">Toilet Runner</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Toilet Rush</h3>
+                        <p class="game-description">Rush to the toilet before it's too late! Navigate through obstacles in this humorous time-management runner with a unique premise.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.toiletrush" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_vegan_stars.webp" alt="Vegan Stars">
+                        <div class="genre-badge">Restaurant Sim</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Vegan Stars</h3>
+                        <p class="game-description">Run a vegan cafe and serve mindful meals! Build your sustainable restaurant business while creating delicious plant-based dishes.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.veganstars" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_animate_it.webp" alt="Animate It!">
+                        <div class="genre-badge">Animation Toybox</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Animate It!</h3>
+                        <p class="game-description">Bring doodles to life with fun animations! Express your creativity by animating simple drawings in this accessible animation tool.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.animateit" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_long_dog.webp" alt="Long Dog">
+                        <div class="genre-badge">Meme Game</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Long Dog</h3>
+                        <p class="game-description">Stretch the longest dog in meme history! An absurd yet oddly satisfying game about making an already long dog even longer.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.longdog" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="genre-section">
+            <h2 class="genre-title">Racing / Arcade</h2>
+            <p class="genre-description">
+                Fast-paced racing games that put players behind the wheel in adrenaline-fueled challenges. Test your reflexes and driving skills in these action-packed arcade experiences.
+            </p>
+            
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_highway_traffic.webp" alt="Highway Traffic">
+                        <div class="genre-badge">Traffic Runner</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Highway Traffic</h3>
+                        <p class="game-description">Speed through traffic and dodge your way to glory! Navigate busy highways at breakneck speeds while avoiding crashes in this heart-pounding endless runner.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.unavinar.highwaytraffic" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="genre-section">
+            <h2 class="genre-title">Lifestyle / Music</h2>
+            <p class="genre-description">
+                Creative expression meets gaming in this lifestyle and music collection. Design dream homes or test your rhythm skills in these engaging titles that blend entertainment with creative elements.
+            </p>
+            
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_perfect_home.webp" alt="Perfect Home">
+                        <div class="genre-badge">Home Design</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Perfect Home</h3>
+                        <p class="game-description">Design dreamy homes with perfect style! Unleash your interior design skills as you decorate and customize beautiful homes to match your aesthetic vision.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.playcus.perfecthome" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_groove_masters.webp" alt="Groove Masters">
+                        <div class="genre-badge">Rhythm Game</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Groove Masters</h3>
+                        <p class="game-description">Tap to the beat in epic rhythm battles! Test your musical timing and coordination in this addictive rhythm game featuring a variety of music genres and challenging patterns.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.playcus.groovemasters" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="genre-section">
+            <h2 class="genre-title">Board / Word / Casual</h2>
+            <p class="genre-description">
+                Digital versions of beloved board games and word puzzles, designed for quick play sessions and brain exercise. Perfect for word enthusiasts and classic game lovers alike.
+            </p>
+            
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_bingo_star.webp" alt="Bingo Star">
+                        <div class="genre-badge">Bingo</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Bingo Star</h3>
+                        <p class="game-description">Win big in this modern bingo adventure! Experience the classic game of bingo with exciting new twists, power-ups, and rewards in a vibrant social environment.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.playcus.bingostar" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_word_ways.webp" alt="Word Ways">
+                        <div class="genre-badge">Word Puzzle</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Word Ways</h3>
+                        <p class="game-description">Connect letters and discover hidden words! Swipe through letter grids to form words in this relaxing yet challenging word puzzle that expands your vocabulary.</p>
+                        <div class="game-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.playcus.word.ways" target="_blank" class="play-store-link">Play Store</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="genre-section">
+            <h2 class="genre-title">Steam PC Projects</h2>
+            <p class="genre-description">
+                Premium PC gaming experiences available on Steam. These titles represent complex gameplay and higher production values in the PC gaming market.
+            </p>
+            
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_countryballs.webp" alt="Countryballs: Power Protocol Demo">
+                        <div class="genre-badge">Strategy / Humor</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Countryballs: Power Protocol Demo</h3>
+                        <p class="game-description">Lead countryballs in a global power parody! Guide your nation through diplomacy, war, and absurd international incidents in this humorous strategy game based on internet culture.</p>
+                        <div class="game-actions">
+                            <a href="https://store.steampowered.com/app/3780780/Countryballs_Power_Protocol_Demo/" target="_blank" class="play-store-link">Steam</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="p_mansion_restorator.webp" alt="Mansion Restorator">
+                        <div class="genre-badge">Simulation / Builder</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Mansion Restorator</h3>
+                        <p class="game-description">Restore a ruined mansion into a masterpiece! Buy, renovate, and sell historic mansions in this detailed simulation game that combines construction, design, and business management.</p>
+                        <div class="game-actions">
+                            <a href="https://store.steampowered.com/app/3086630/Mansion_Restorator/" target="_blank" class="play-store-link">Steam</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <div style="text-align: center; margin: 30px 0 50px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <p style="font-size: 1.1rem; color: #9ca3af; line-height: 1.6;">This portfolio showcases games our team members worked on at various companies throughout their careers.</p>
+        </div>
+
+        <div class="footer">
+            <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 30px;">
+                <a href="index.html" class="back-link">Back to Home</a>
+                <a href="team.html" style="display: inline-block; color: #3b82f6; text-decoration: none; font-size: 1.1rem; font-weight: 500; transition: all 0.3s ease;">Meet Our Team →</a>
+            </div>
+            <p>© 2025 Atomic Apps. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Particle animation - improved version
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Distribute particles randomly throughout the entire viewport height
+            particle.style.top = Math.random() * 100 + 'vh';
+            particle.style.left = Math.random() * 100 + '%';
+            
+            // Randomize animation properties for more natural movement
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            
+            // Vary particle size slightly
+            const size = 2 + Math.random() * 3;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            
+            // Vary opacity
+            particle.style.opacity = 0.3 + Math.random() * 0.7;
+            
+            particlesContainer.appendChild(particle);
+        }
+
+        // Scroll animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.game-card').forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>

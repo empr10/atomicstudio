@@ -42,7 +42,7 @@
         .expertise-icon { font-size: 2.5rem; margin-bottom: 20px; background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .expertise-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 15px; color: #ffffff; }
         .expertise-description { color: #d1d5db; font-size: 0.95rem; line-height: 1.6; }
-        .games-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 80px; }
+        .games-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 40px; }
         .game-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; overflow: hidden; transition: all 0.3s ease; position: relative; }
         .game-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(139,92,246,0.3); }
         .game-card img { width: 100%; height: 200px; object-fit: cover; transition: all 0.5s ease; }
@@ -60,11 +60,6 @@
         .tech-item { color: #d1d5db; margin-bottom: 10px; font-size: 0.95rem; position: relative; padding-left: 20px; }
         .tech-item::before { content: '▹'; position: absolute; left: 0; color: #8b5cf6; }
         .section-divider { height: 3px; background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent); margin: 80px auto; width: 80%; }
-        .metrics-section { text-align: center; margin-bottom: 80px; }
-        .metrics-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
-        .metric-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px 30px; min-width: 200px; }
-        .metric-value { font-size: 2rem; font-weight: 700; margin-bottom: 5px; background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .metric-label { color: #9ca3af; font-size: 0.9rem; }
         .footer { text-align: center; padding: 40px 0; color: #6b7280; font-size: 0.9rem; }
         @media (max-width:768px){
             .header h1{font-size:3rem;}
@@ -161,6 +156,17 @@
             font-size: 0.95rem;
             line-height: 1.6;
         }
+        .section-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .intro-text {
+            font-size: 1.2rem;
+            color: #d1d5db;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
     </style>
 </head>
 <body>
@@ -176,10 +182,10 @@
         <section class="hero-section">
             <div class="hero-content">
                 <h2 style="font-size: 2.5rem; margin-bottom: 30px; background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-                    Game Development Studio Founded in 2024
+                   Unity Game Development Studio Founded in 2024
                 </h2>
                 <p style="font-size: 1.2rem; color: #d1d5db; margin-bottom: 20px; line-height: 1.8;">
-                    We build mobile games that feel indie-fresh yet scale like services. As hyper-casual loses traction and players crave deeper experiences, our gamer-led studio combines the creativity of the indie scene with the data-driven rigour of mobile F2P.
+                    We have extensive experience developing: hybrid casual games, casual, roguelike, tower defense, puzzle, shooter, racing, and simulator games—each title designed to stand out through novel mechanics or exceptionally polished gameplay.
                 </p>
                 <p style="font-size: 1.2rem; color: #d1d5db; margin-bottom: 20px; line-height: 1.8;">
                     Our genre focus includes roguelikes, tower defenses, puzzle hybrids, and top-down shooters—each title designed to stand out through novel mechanics or exceptionally polished gameplay.
@@ -245,7 +251,7 @@
                 <div class="stat-label">Team Members</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">3M+</div>
+                <div class="stat-number">10M+</div>
                 <div class="stat-label">Total Downloads</div>
             </div>
             <div class="stat-card">
@@ -253,8 +259,8 @@
                 <div class="stat-label">Founded Year</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">F2P</div>
-                <div class="stat-label">Specialization</div>
+                <div class="stat-number">60+</div>
+                <div class="stat-label">Years Combined Experience :)</div>
             </div>
         </div>
 
@@ -262,26 +268,31 @@
             <div class="title-container">
                 <h2 class="centered-title">Our Expertise</h2>
             </div>
+            <div class="section-intro">
+                <p class="intro-text">
+                    We combine technical excellence with creative vision to deliver games that captivate players and drive commercial success. Our expertise spans the entire game development lifecycle.
+                </p>
+            </div>
             <div class="expertise-grid">
                 <div class="expertise-card">
                     <div class="expertise-icon">🎮</div>
-                    <h3 class="expertise-title">Product & Live-Ops Leadership</h3>
-                    <p class="expertise-description">Veteran producers who have shipped cross-platform hits and can scale teams and revenue with proven go-to-market playbooks.</p>
+                    <h3 class="expertise-title">Product & Live-Ops</h3>
+                    <p class="expertise-description">Experience from concept to launch and ongoing support. We've successfully brought projects from scratch to store release and have broad expertise in managing LiveOps. Our team handles various monetization models and builds sustainable content and retention cycles.</p>
                 </div>
                 <div class="expertise-card">
                     <div class="expertise-icon">⚙️</div>
-                    <h3 class="expertise-title">Systems-First Game Design</h3>
-                    <p class="expertise-description">Economy-driven, retention-focused design that balances depth and accessibility to keep players in flow.</p>
+                    <h3 class="expertise-title">Systems Game Design</h3>
+                    <p class="expertise-description">A systematic approach to design and player retention. In every project, we craft a clear and engaging first-time user experience and a deep meta-game that keeps players coming back. Retention and engagement are at the heart of our design philosophy.</p>
                 </div>
                 <div class="expertise-card">
                     <div class="expertise-icon">🎨</div>
                     <h3 class="expertise-title">Unified Art & Engineering Pipeline</h3>
-                    <p class="expertise-description">2D/3D art, animation, VFX and Unity engineering working on a single agile toolchain for rapid content drops.</p>
+                    <p class="expertise-description">Full-cycle visual production for any scope. Our team works across 2D and 3D graphics, animation, and visual effects, ensuring a fast and high-quality production pipeline. We seamlessly integrate art and technology into a single workflow.</p>
                 </div>
                 <div class="expertise-card">
-                    <div class="expertise-icon">📊</div>
-                    <h3 class="expertise-title">Agile, Data-Centric Process</h3>
-                    <p class="expertise-description">CI/CD, KPI tracking and deep player analytics baked into every sprint, ensuring high-velocity iteration and sustainable growth.</p>
+                    <div class="expertise-icon">🧠</div>
+                    <h3 class="expertise-title">Data-Driven Decision</h3>
+                    <p class="expertise-description">Analytics as the foundation for growth. We deeply analyze player behavior and base our decisions on data. This enables us to identify growth opportunities, test hypotheses quickly, and scale projects intelligently.</p>
                 </div>
             </div>
         </section>
@@ -290,7 +301,12 @@
 
         <section class="section">
             <div class="title-container">
-                <h2 class="centered-title">Our Games</h2>
+                <h2 class="centered-title">Games We've Worked On</h2>
+            </div>
+            <div class="section-intro">
+                <p class="intro-text">
+                    Explore our portfolio of engaging mobile games where our team members have contributed their expertise across different projects and companies. Each title showcases the collective experience and skills we bring to every new project.
+                </p>
             </div>
             <div class="games-showcase">
                  <div class="game-card">
@@ -300,7 +316,6 @@
                         <p class="game-description">A visually stunning hidden object game with progressive challenges and narrative elements.</p>
                         <a href="https://play.google.com/store/apps/details?id=com.crooto.hidden.objects.findthem.scavenger" target="_blank" class="game-link">Play Now →</a>
                     </div>
-              
                 </div>
                 <div class="game-card">
                     <img src="game3.webp" alt="DOP 2: Puzzle & Riddle" class="game-thumbnail">
@@ -310,7 +325,7 @@
                         <a href="https://play.google.com/store/apps/details?id=com.weave.dop.delete.one.part.riddles.puzzle" target="_blank" class="game-link">Play Now →</a>
                     </div>
                 </div>
-                 <div class="game-card">
+                <div class="game-card">
                     <img src="game2.webp" alt="Frontier Heroes: Deck of Fate" class="game-thumbnail">
                     <div class="game-info">
                         <h3 class="game-title">Frontier Heroes: Deck of Fate</h3>
@@ -326,88 +341,33 @@
                         <a href="https://play.google.com/store/apps/details?id=top.setapp.lemon" target="_blank" class="game-link">Play Now →</a>
                     </div>
                 </div>
+                <div class="game-card">
+                    <img src="game5.webp" alt="Undead Lamb" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3 class="game-title">Undead Lamb</h3>
+                        <p class="game-description">A thrilling adventure game with unique zombie-themed mechanics and engaging storyline.</p>
+                        <a href="https://play.google.com/store/apps/details?id=com.unavinar.undeadlamb&hl=en_US" target="_blank" class="game-link">Play Now →</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="game6.webp" alt="Farm Jam Puzzle" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3 class="game-title">Farm Jam Puzzle</h3>
+                        <p class="game-description">A colorful farm-themed puzzle game with addictive match-3 mechanics and charming characters.</p>
+                        <a href="https://play.google.com/store/apps/details?id=com.unavinar.farmjampuzzle&hl=en_US" target="_blank" class="game-link">Play Now →</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="game7.webp" alt="Battle Craft" class="game-thumbnail">
+                    <div class="game-info">
+                        <h3 class="game-title">Battle Craft</h3>
+                        <p class="game-description">An action-packed strategy game where players build and defend their base while attacking opponents.</p>
+                        <a href="https://play.google.com/store/apps/details?id=com.unavinar.battlecraft" target="_blank" class="game-link">Play Now →</a>
+                    </div>
+                </div>
             </div>
-        </section>
-
-        <div class="section-divider"></div>
-
-        <section class="metrics-section">
-            <div class="title-container">
-                <h2 class="centered-title">Performance Metrics</h2>
-            </div>
-            <div class="metrics-grid">
-                <div class="metric-item">
-                    <div class="metric-value">32%</div>
-                    <div class="metric-label">Day 1 Retention</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">10%</div>
-                    <div class="metric-label">Day 3 Retention</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-value">3M+</div>
-                    <div class="metric-label">Total Downloads</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="tech-section">
-            <div class="title-container">
-                <h2 class="centered-title">Our Tech Stack</h2>
-            </div>
-            <div class="tech-grid">
-                <div class="tech-category">
-                    <h3 class="tech-category-title">Engine & Core</h3>
-                    <ul class="tech-list">
-                        <li class="tech-item">Unity 2D/3D</li>
-                        <li class="tech-item">Addressables</li>
-                        <li class="tech-item">DOTween</li>
-                        <li class="tech-item">Unreal (Cinematics)</li>
-                    </ul>
-                </div>
-                <div class="tech-category">
-                    <h3 class="tech-category-title">Analytics & LiveOps</h3>
-                    <ul class="tech-list">
-                        <li class="tech-item">Firebase</li>
-                        <li class="tech-item">Amplitude</li>
-                        <li class="tech-item">ByteBrew</li>
-                        <li class="tech-item">GameAnalytics</li>
-                    </ul>
-                </div>
-                <div class="tech-category">
-                    <h3 class="tech-category-title">Monetization & UA</h3>
-                    <ul class="tech-list">
-                        <li class="tech-item">Unity IAP</li>
-                        <li class="tech-item">AppLovin MAX</li>
-                        <li class="tech-item">AppsFlyer</li>
-                    </ul>
-                </div>
-                <div class="tech-category">
-                    <h3 class="tech-category-title">Networking & Backend</h3>
-                    <ul class="tech-list">
-                        <li class="tech-item">Photon Fusion</li>
-                        <li class="tech-item">Unity Netcode</li>
-                        <li class="tech-item">Custom REST services</li>
-                    </ul>
-                </div>
-                <div class="tech-category">
-                    <h3 class="tech-category-title">Production Toolkit</h3>
-                    <ul class="tech-list">
-                        <li class="tech-item">Jira</li>
-                        <li class="tech-item">Confluence</li>
-                        <li class="tech-item">Figma</li>
-                        <li class="tech-item">Miro</li>
-                    </ul>
-                </div>
-                <div class="tech-category">
-                    <h3 class="tech-category-title">Art & Content</h3>
-                    <ul class="tech-list">
-                        <li class="tech-item">Photoshop</li>
-                        <li class="tech-item">Blender</li>
-                        <li class="tech-item">ZBrush</li>
-                        <li class="tech-item">Substance Painter</li>
-                    </ul>
-                </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="showcase.html" class="cta-button">See Full Portfolio</a>
             </div>
         </section>
 
@@ -417,8 +377,8 @@
             <div class="title-container">
                 <h2 class="centered-title">Games Ready for Publishers</h2>
             </div>
-            <div style="text-align: center; margin-bottom: 40px;">
-                <p style="font-size: 1.2rem; color: #d1d5db; margin-bottom: 30px; line-height: 1.8; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <div class="section-intro">
+                <p class="intro-text">
                     Explore our collection of completed games that are ready to be published. These projects showcase our expertise in game development and are looking for the right publishing partner.
                 </p>
                 <a href="https://drive.google.com/drive/folders/13MJ4koIZYY0abCMbBjWpJmicWKvWvGVN?usp=sharing" target="_blank" class="cta-button">View Project Folder</a>
@@ -432,31 +392,31 @@
                 <h2 class="centered-title">Meet Our Team</h2>
             </div>
             <div class="team-showcase">
-                <div class="team-intro">
-                    <p style="font-size: 1.2rem; color: #d1d5db; margin-bottom: 30px; line-height: 1.8; text-align: center; max-width: 700px; margin-left: auto; margin-right: auto;">
-                        Behind every great game is a passionate team of creators. Get to know the talented individuals who bring our visions to life.
+                <div class="section-intro">
+                    <p class="intro-text">
+                        Behind every great game is a passionate team of creators. Get to know the talented individuals who bring our visions to life and drive innovation in every project.
                     </p>
                 </div>
                 <div class="team-preview-grid">
                     <div class="team-preview-card">
                         <div class="team-icon">👨‍💻</div>
                         <h3 class="team-role">Developers</h3>
-                        <p class="team-description">Full-stack engineers crafting seamless gameplay experiences</p>
+                        <p class="team-description">Full-stack engineers crafting seamless gameplay experiences with cutting-edge technology</p>
                     </div>
                     <div class="team-preview-card">
                         <div class="team-icon">🎨</div>
                         <h3 class="team-role">Artists</h3>
-                        <p class="team-description">Visual storytellers creating stunning game worlds</p>
+                        <p class="team-description">Visual storytellers creating stunning game worlds that captivate and inspire players</p>
                     </div>
                     <div class="team-preview-card">
                         <div class="team-icon">🎮</div>
                         <h3 class="team-role">Game Designers</h3>
-                        <p class="team-description">Creative minds designing engaging player experiences</p>
+                        <p class="team-description">Creative minds designing engaging player experiences and innovative gameplay mechanics</p>
                     </div>
                     <div class="team-preview-card">
                         <div class="team-icon">📊</div>
                         <h3 class="team-role">Producers</h3>
-                        <p class="team-description">Strategic leaders driving project success</p>
+                        <p class="team-description">Strategic leaders driving project success from concept to global launch</p>
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 40px;">
