@@ -16,6 +16,23 @@
         @keyframes slideDown { from { opacity:0; transform:translateY(-30px);} to {opacity:1; transform:translateY(0);} }
         .header h1 { font-size: 4rem; font-weight: 800; background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:20px; letter-spacing:-2px; }
         .header .subtitle { font-size:1.5rem; color:#9ca3af; font-weight:300; }
+        .contact-mail {
+            margin-top: 15px;
+        }
+        .contact-mail a {
+            font-size: 1.1rem;
+            font-weight: 500;
+            background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .contact-mail a:hover {
+            text-decoration: underline;
+            filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.6));
+        }
         .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:30px; margin-bottom:80px; animation:fadeIn 1s ease-out 0.2s both; }
         @keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
         .stat-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:30px; text-align:center; backdrop-filter:blur(10px); transition:all 0.3s ease; }
@@ -186,7 +203,9 @@
         <header class="header">
             <h1>Atomic Apps</h1>
             <p class="subtitle">Indie Soul, Mobile Scale.</p>
-            <p><a href="mailto:atomicplayapps@gmail.com">atomicplayapps@gmail.com</a></p>
+            <p class="contact-mail">
+            <a href="mailto:atomicplayapps@gmail.com">atomicplayapps@gmail.com</a>
+            </p>
         </header>
 
         <section class="hero-section">
