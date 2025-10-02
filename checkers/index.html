@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Шашечный Прототип 11х11</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="hud">
+      <div class="hud-main">
+        <div class="hud-progress">
+          <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="200" aria-valuenow="0">
+            <div id="progress-fill" class="progress-bar__fill"></div>
+          </div>
+          <div class="hud-progress__footer">
+            <span id="progress-text" class="hud-progress__text">0 / 200</span>
+            <span class="hud-progress__label">До завершения уровня</span>
+          </div>
+        </div>
+        <div class="hud-attempts">
+          <span class="hud-attempts__label">Попыток осталось</span>
+          <span id="attempts-remaining" class="hud-attempts__value">5</span>
+        </div>
+      </div>
+    </section>
+    <section class="board-wrapper">
+      <div class="board-overlay" aria-hidden="true">
+        <div id="combo-popover" class="combo-popover" aria-hidden="true">
+          <span class="combo-popover__label">Серия</span>
+          <span id="combo-popover-title" class="combo-popover__title" aria-hidden="true"></span>
+          <span id="combo-popover-value" class="combo-popover__value">+0</span>
+          <span id="combo-popover-multiplier" class="combo-popover__multiplier" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div id="board" class="board" aria-label="Игровое поле 11 на 11"></div>
+    </section>
+  </main>
+  <script src="main.js"></script>
+</body>
+</html>
